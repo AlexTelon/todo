@@ -22,6 +22,19 @@ def update(id, title, description, completed):
     click.echo(f'Task {id} updated!')
 
 @todo.command()
+@click.argument('title')
+@click.argument('description')
+def add(title, description):
+    task = Task(
+        id=None,
+        title=title,
+        description=description,
+        completed=False
+    )
+    database.create_task(task)
+    click.echo('Task added successfully.')
+
+@todo.command()
 @click.argument('id')
 def delete(id):
     database.delete_task(id)
