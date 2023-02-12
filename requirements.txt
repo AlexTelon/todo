@@ -1,1 +1,5 @@
+# For web frontend
 flask
+
+# For cli.
+click

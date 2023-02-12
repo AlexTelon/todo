@@ -6,16 +6,17 @@
   <body>
     <h1>Tasks</h1>
     <ul>
-      {% for task in tasks %}
-        <li>
-          <h2>{{ task[1] }}</h2>
-          <p>{{ task[2] }}</p>
-          <form action="/tasks/{{ task[0] }}" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit">Delete</button>
-          </form>
-        </li>
+        {% for task in tasks %}
+        <tr>
+          <td>{{ task.id }}</td>
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td>{% if task.completed %}Yes{% else %}No{% endif %}</td>
+          <td><a href="{{ url_for('update_task', id=task.id) }}">Edit</a></td>
+          <td><a href="{{ url_for('delete_task', id=task.id) }}" data-method="delete">Delete</a></td>
+        </tr>
       {% endfor %}
+      
     </ul>
     <hr>
     <h2>Create a new task</h2>

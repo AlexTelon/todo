@@ -2,16 +2,26 @@ import sqlite3
 
 DATABASE = 'tasks.db'
 
+class Task:
+    def __init__(self, id, title, description, completed):
+        self.id = id
+        self.title = title
+        self.description = description
+        self.completed = completed
+
+
 def get_tasks():
     conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-
-    cursor.execute('SELECT id, title, description, completed FROM tasks')
-    tasks = cursor.fetchall()
-
+    c = conn.cursor()
+    c.execute('SELECT * FROM tasks')
+    rows = c.fetchall()
+    tasks = []
+    for row in rows:
+        task = Task(*row)
+        tasks.append(task)
     conn.close()
-
     return tasks
+
 
 def create_task(title, description):
     conn = sqlite3.connect(DATABASE)
