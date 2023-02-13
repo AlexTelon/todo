@@ -10,7 +10,7 @@ def todo():
 def list():
     tasks = database.get_tasks()
     for task in tasks:
-        click.echo(f'{task.id}: {task.title}')
+        click.echo(f'{task.id}: {task.title} {task.description} {task.completed}')
 
 @todo.command()
 @click.argument('id')
@@ -41,8 +41,4 @@ def delete(id):
     click.echo(f'Task {id} deleted!')
 
 if __name__ == '__main__':
-    tasks = database.get_tasks()
-    for task in tasks:
-        click.echo(f'{task.id}: {task.title} {task.description} {task.completed}')
-
-    todo()
+    database.try_setup_db()
