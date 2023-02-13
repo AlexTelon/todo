@@ -2,12 +2,13 @@
 
 This is a simple command-line interface for managing tasks in a todo list.
 
-It has a `python app.py` web interface and a `python cli.py` command-line interface. This document will focus on the cli for now.
+It has a `python app.py` web interface and a `todo` command-line interface. This document will focus on the cli for now.
 
 ## Installation
 
 ```shell
-pip install -r requirements.txt
+pip install .
+# pip install -e . # if you want to make changes to the code.
 ```
 
 ## Usage
@@ -20,7 +21,7 @@ Displays a list of all tasks in your todo list.
 
 Example:
 ```shell
-python cli.py list
+todo list
 ```
 
 ### `add <title> <description>`
@@ -29,7 +30,7 @@ Adds a new task to your todo list with the given title and description.
 
 Example:
 ```shell
-python cli.py add "Example Task" "This is an example task."
+todo add "Example Task" "This is an example task."
 ```
 
 ### `update <id> [--title <title>] [--description <description>] [--completed <true/false>]`
@@ -39,7 +40,7 @@ Updates an existing task in your todo list with the given ID. You can update the
 Example:
 
 ```shell
-python cli.py update 1 --title "Updated Task" --completed true
+todo update 1 --title "Updated Task" --completed true
 ```
 
 ### `delete <id>`
@@ -48,5 +49,5 @@ Deletes an existing task in your todo list with the given ID.
 
 Example:
 ```shell
-python cli.py delete 1
+todo delete 1
 ```
